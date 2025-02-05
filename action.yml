@@ -1,0 +1,23 @@
+name: "Copy Code to Another Repo"
+description: "Copy specified code from current repository to another."
+inputs:
+  source-path:
+    description: "Path to the source code within the current repository"
+    required: true
+  target-repo:
+    description: "Full name of the target repository (e.g., owner/repo)"
+    required: true
+  target-path:
+    description: "Path to the target location within the target repository"
+    required: true
+  target-token:
+    description: "Personal access token with write access to the target repository"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.source-path }}
+    - ${{ inputs.target-repo }}
+    - ${{ inputs.target-path }}
+    - ${{ inputs.target-token }}
