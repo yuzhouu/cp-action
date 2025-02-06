@@ -1,1 +1,3 @@
-node copy-code.js "$1" "$2" "$3" "$4"
+#!/bin/bash
+
+bash src/copy - code.sh "$1" "$2" "$3" "$4"
