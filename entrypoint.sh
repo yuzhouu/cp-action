@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 获取命令行参数
 source_path=$1
