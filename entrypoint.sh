@@ -6,6 +6,11 @@ target_repo=$2
 target_path=$3
 target_token=$4
 
+git config --global --add safe.directory /github/workspace
+git config --global init.defaultBranch main
+git config --global user.email "action@github.com"
+git config --global user.name "GitHub Action"
+
 # 获取当前仓库最新的 commit sha
 source_commit_sha=$(git log -1 --pretty=format:%H)
 
@@ -20,11 +25,6 @@ mkdir -p temp-target/$target_path
 
 # 复制指定代码到目标路径
 cp -r $source_path temp-target/$target_path
-
-git config --global --add safe.directory /github/workspace
-git config --global init.defaultBranch main
-git config --local user.email "action@github.com"
-git config --local user.name "GitHub Action"
 
 # 进入目标临时目录并初始化 Git
 cd temp-target
