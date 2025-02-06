@@ -21,6 +21,11 @@ mkdir -p temp-target/$target_path
 # 复制指定代码到目标路径
 cp -r $source_path temp-target/$target_path
 
+git config --global --add safe.directory /github/workspace
+git config --global init.defaultBranch main
+git config --local user.email "action@github.com"
+git config --local user.name "GitHub Action"
+
 # 进入目标临时目录并初始化 Git
 cd temp-target
 git init
