@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 # 安装依赖
-RUN npm install
+# RUN npm install
 
 # 设置入口点脚本
 COPY entrypoint.sh /entrypoint.sh
