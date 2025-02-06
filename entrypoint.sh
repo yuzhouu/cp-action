@@ -6,6 +6,18 @@ target_repo=$2
 target_path=$3
 target_token=$4
 
+# 判断 source_path 是否是 .
+if [ "$source_path" == "." ]; then
+    echo "Error: source_path cannot be the ."
+    exit 1
+fi
+
+# 判断 target_path 是否是 .
+if [ "$target_path" == "." ]; then
+    echo "Error: target_path cannot be the ."
+    exit 1
+fi
+
 git config --global --add safe.directory /github/workspace
 git config --global init.defaultBranch main
 git config --global user.email "action@github.com"
@@ -30,7 +42,8 @@ git remote add origin "https://x-access-token:$target_token@github.com/$target_r
 git fetch origin main
 git checkout -b temp-branch origin/main
 
-# 复制指定代码到目标路径
+# 复制指定文件夹到目标路径
+rm -rf $target_path/$source_path
 cp -r ../$source_path $target_path
 
 # 检查是否有变更

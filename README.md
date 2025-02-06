@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Copy Code
-        uses: yuzhouu/cp-action@v0.0.5
+        uses: yuzhouu/cp-action@v0.0.9
         with:
           source-path: "path/to/source/code"
           target-repo: "target-owner/target-repo"
