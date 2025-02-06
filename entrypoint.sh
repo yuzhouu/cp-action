@@ -17,14 +17,11 @@ source_commit_sha=$(git log -1 --pretty=format:%H)
 # 获取当前仓库最新的提交信息
 source_commit_message=$(git log -1 --pretty=format:%s)
 
-# 组合 commit sha 和提交信息
-combined_commit_message="[Source SHA: $source_commit_sha] $source_commit_message"
+# 组合提交信息和 commit sha
+combined_commit_message="$source_commit_message [Source SHA: $source_commit_sha]"
 
 # 创建目标临时目录
 mkdir -p temp-target/$target_path
-
-# 复制指定代码到目标路径
-cp -r $source_path temp-target/$target_path
 
 # 进入目标临时目录并初始化 Git
 cd temp-target
@@ -32,6 +29,9 @@ git init
 git remote add origin "https://x-access-token:$target_token@github.com/$target_repo.git"
 git fetch origin main
 git checkout -b temp-branch origin/main
+
+# 复制指定代码到目标路径
+cp -r ../$source_path $target_path
 
 # 检查是否有变更
 changes=$(git status --porcelain)
